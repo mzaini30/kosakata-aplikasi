@@ -9,6 +9,6 @@ export default defineConfig({
     svelte(),
     UnoCSS(),
     pages(),
-    // legacy()
+    legacy()
   ],
 });
