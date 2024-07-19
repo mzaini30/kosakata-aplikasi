@@ -24,6 +24,11 @@
       return keywordChars.every((char) => nameChars.includes(char));
     });
   }
+  function filterBiasa(data, keyword) {
+    return data.filter((x) =>
+      x.nama.toLowerCase().includes(keyword.toLowerCase()),
+    );
+  }
 </script>
 
 <div class="container py-4 space-y-4">
@@ -45,7 +50,7 @@
       <div class="input-group">
         <span class="input-group-text" id="basic-addon1">Filter</span>
         <input
-          oninput={() => (santriSalin = filterByKeyword(santri, teksFilter))}
+          oninput={() => (santriSalin = filterBiasa(santri, teksFilter))}
           bind:value={teksFilter}
           type="search"
           placeholder="Masukkan Nama Santri"
