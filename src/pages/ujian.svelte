@@ -1,6 +1,7 @@
 <script>
   import { acak } from "kumpulan-tools";
   import kosakata from "../kosakata.json";
+  import { watch } from "runed";
 
   let listAngka = [];
   for (let x = 1; x <= kosakata.length; x++) {
@@ -9,9 +10,29 @@
   listAngka = listAngka.filter((x) => x != 199);
 
   let angkaDiacak = $state([]);
+  let nilai = $state([]);
+  let nilaiTotal = $state(0);
+
+  for (let n = 0; n < 10; n++) {
+    watch(
+      () => nilai[n],
+      () => menjumlahkan(),
+    );
+  }
+
+  function menjumlahkan() {
+    let total = 0;
+    for (let x of nilai) {
+      if (x == 1 || x == 0) {
+        total += +x;
+      }
+    }
+    nilaiTotal = total;
+  }
 
   function mengacakAngka() {
     angkaDiacak = acak(listAngka);
+    nilai = [];
     // angkaDiacak = listAngka.reverse();
     console.log(angkaDiacak);
   }
@@ -27,18 +48,31 @@
     </tr>
   </thead>
   <tbody>
-    {#each angkaDiacak.slice(0, 10) as x}
+    {#each angkaDiacak.slice(0, 10) as x, n}
       <tr>
-        <td>{x}</td>
         <td class="align-middle">
           <img src="gambar/{x + 1}.PNG" class="mx-auto block" alt="" />
           <p class="text-center mb-0">{kosakata[x]}</p>
         </td>
         <td class="align-middle">
-          <input type="radio" name="" id="" class="block mx-auto scale-150" />
+          <input
+            type="radio"
+            value={1}
+            name=""
+            id=""
+            class="block mx-auto scale-150"
+            bind:group={nilai[n]}
+          />
         </td>
         <td class="align-middle">
-          <input type="radio" name="" id="" class="block mx-auto scale-150" />
+          <input
+            type="radio"
+            value={0}
+            name=""
+            id=""
+            class="block mx-auto scale-150"
+            bind:group={nilai[n]}
+          />
         </td>
       </tr>
     {/each}
@@ -48,5 +82,5 @@
   <div class="">
     <button class="btn btn-success" onclick={mengacakAngka}>Acak</button>
   </div>
-  <div class="text-xl font-bold">0</div>
+  <div class="text-xl font-bold">{nilaiTotal * 10}</div>
 </div>
