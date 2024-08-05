@@ -80,7 +80,12 @@
 </table>
 <div class="flex justify-between sticky bottom-0 bg-blue-100 p-2 items-center">
   <div class="">
-    <button class="btn btn-success" onclick={mengacakAngka}>Acak</button>
+    <button
+      class="btn btn-success"
+      onclick={() => {
+        location.reload();
+      }}>Acak</button
+    >
   </div>
   <div class="text-xl font-bold">{nilaiTotal * 10}</div>
 </div>
