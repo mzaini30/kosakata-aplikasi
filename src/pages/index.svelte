@@ -32,7 +32,12 @@
 </script>
 
 <div class="container py-4 space-y-4">
-  <h1 class="text-center">Cek Bahasa</h1>
+  <div class="flex justify-between items-center">
+    <h1 class="">Cek Bahasa</h1>
+    <div>
+      <a href="#/ujian" class="btn btn-success">Ujian</a>
+    </div>
+  </div>
   <ul class="list-group">
     <li class="list-group-item text-center active uppercase">
       Kosakata Apel Pagi
